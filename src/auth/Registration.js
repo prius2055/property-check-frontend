@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function Registration() {
   const newUserObj = {
@@ -21,6 +22,48 @@ function Registration() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(newUser);
+
+    const userData = {
+      user: {
+        username: newUser.username,
+        email: newUser.email,
+        password: newUser.password,
+        password_confirmation: newUser.password_confirmation,
+      },
+    };
+
+    // const d = JSON.stringify(userData);
+
+    console.log(userData.user.user);
+
+    axios
+      .post(
+        'http://localhost:3000/signup',
+        {
+          username: newUser.username,
+          email: newUser.email,
+          password: newUser.password,
+          password_confirmation: newUser.password_confirmation,
+        },
+        {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            // Authorization: 'Bearer ' + token, // if you use token
+          },
+        }
+
+        // header:{'Content-Type': 'application/json'}
+        // { withCredentials: true }
+      )
+      .then((response) => {
+        if (response.data.status === 'created') {
+          console.log('Registration data', response.data);
+        }
+      })
+      .catch((error) => {
+        console.log('registration error', error.response.data);
+      });
   };
 
   return (
@@ -33,7 +76,7 @@ function Registration() {
             name="username"
             placeholder="Username"
             required
-            // value={newUser.email}
+            value={newUser.username}
             onChange={handleChange}
           />
         </div>
@@ -45,7 +88,7 @@ function Registration() {
             name="email"
             placeholder="Email"
             required
-            // value={newUser.email}
+            value={newUser.email}
             onChange={handleChange}
           />
         </div>
@@ -57,7 +100,7 @@ function Registration() {
             name="password"
             placeholder="Password"
             required
-            // value={this.state.password}
+            value={newUser.password}
             onChange={handleChange}
           />
         </div>
@@ -69,7 +112,7 @@ function Registration() {
             name="password_confirmation"
             placeholder="Password Confirmation"
             required
-            // value={this.state.password_confirmation}
+            value={newUser.password_confirmation}
             onChange={handleChange}
           />
         </div>

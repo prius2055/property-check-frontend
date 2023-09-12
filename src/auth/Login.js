@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function Login() {
   const userObj = {
@@ -18,6 +19,27 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    axios
+      .post(
+        'http://localhost:3000/login',
+        {
+          user: {
+            username: user.username,
+            password: user.password,
+          },
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        if (response.data.logged_in && response.data.patient) {
+          this.props.handleSuccessfulAuth(response.data);
+        } else {
+          this.props.handleSuccessfulDoctorAuth(response.data);
+        }
+      })
+      .catch((error) => {
+        console.log('login error', error);
+      });
     console.log(user);
   };
 
@@ -31,7 +53,7 @@ function Login() {
             name="username"
             placeholder="Username"
             required
-            // value={newUser.email}
+            value={user.username}
             onChange={handleChange}
           />
         </div>
@@ -43,7 +65,7 @@ function Login() {
             name="password"
             placeholder="Password"
             required
-            // value={this.state.password}
+            value={user.password}
             onChange={handleChange}
           />
         </div>
@@ -52,7 +74,7 @@ function Login() {
           Login
         </button>
         <p>
-          Don't have an account? <Link to="/register">Register</Link>
+          Don't have an account? <Link to="/registration">Register</Link>
         </p>
       </form>
     </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import Navigation from './Navigation';
 // import Login from './auth/Login';
 // import { Link } from 'react-router-dom';
 
@@ -10,7 +11,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h1>dashboard</h1>
+      <Navigation />
     </div>
   );
 };

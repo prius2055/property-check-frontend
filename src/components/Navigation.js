@@ -8,7 +8,7 @@ import { faPinterestP } from '@fortawesome/free-brands-svg-icons';
 
 const Navigation = () => {
   return (
-    <div className="flex flex-col justify-between h-screen w-1/4 py-4 pl-4 border-2">
+    <div className="flex flex-col justify-between h-screen w-1/7 py-4 pl-4 border-2">
       <div className="flex flex-col font-bold">
         <h1 className="p-4">propInspect</h1>
 

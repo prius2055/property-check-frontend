@@ -8,6 +8,7 @@ import Login from './auth/Login';
 import axios from 'axios';
 
 import './App.css';
+import Inspection from './components/Inspection';
 
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
         <Route path="/" element={<SplashPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/property-detail" element={<PropertyDetail />} />
+        <Route path="/book-inspection" element={<Inspection />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<Login />} />
       </Routes>

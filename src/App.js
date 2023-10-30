@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
+import PropertyDetail from './components/PropertyDetail';
 import SplashPage from './components/SplashPage';
 import Registration from './auth/Registration';
 import Login from './auth/Login';
 import axios from 'axios';
 
 import './App.css';
+
 
 function App() {
   // const navigate = useNavigate();
@@ -58,6 +60,7 @@ function App() {
       <Routes>
         <Route path="/" element={<SplashPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/property-detail" element={<PropertyDetail />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<Login />} />
       </Routes>

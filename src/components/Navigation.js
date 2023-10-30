@@ -14,8 +14,8 @@ const Navigation = () => {
 
         <ul className="mt-20 flex flex-col justify-between h-80 uppercase cursor-pointer ">
           <li className="p-4 hover:bg-lime-500">Properties</li>
-          <li className="p-4 hover:bg-lime-500">My appointments</li>
-          <li className="p-4 hover:bg-lime-500">Book appointment</li>
+          <li className="p-4 hover:bg-lime-500">My inspections</li>
+          <li className="p-4 hover:bg-lime-500">Book inspection</li>
           <li className="p-4 hover:bg-lime-500">Add property</li>
           <li className="p-4 hover:bg-lime-500">Remove property</li>
           <li className="p-4 hover:bg-lime-500">Logout out</li>

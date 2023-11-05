@@ -34,21 +34,17 @@ function Registration() {
 
     // const d = JSON.stringify(userData);
 
-    console.log(userData.user.user);
+    console.log(userData.user);
 
     axios
       .post(
         'http://localhost:3000/signup',
-        {
-          username: newUser.username,
-          email: newUser.email,
-          password: newUser.password,
-          password_confirmation: newUser.password_confirmation,
-        },
+        userData,
         {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
+
             // Authorization: 'Bearer ' + token, // if you use token
           },
         }
@@ -57,8 +53,8 @@ function Registration() {
         // { withCredentials: true }
       )
       .then((response) => {
-        if (response.data.status === 'created') {
-          console.log('Registration data', response.data);
+        if (response.status === 200) {
+          console.log('Registration data', response.data.data);
         }
       })
       .catch((error) => {

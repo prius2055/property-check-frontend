@@ -1,4 +1,5 @@
 import React from 'react';
+import Logout from '../auth/Logout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
@@ -18,7 +19,8 @@ const Navigation = () => {
           <li className="p-4 hover:bg-lime-500">Book inspection</li>
           <li className="p-4 hover:bg-lime-500">Add property</li>
           <li className="p-4 hover:bg-lime-500">Remove property</li>
-          <li className="p-4 hover:bg-lime-500">Logout out</li>
+          <Logout/>
+          {/* <li className="p-4 hover:bg-lime-500">Logout out</li> */}
         </ul>
       </div>
 

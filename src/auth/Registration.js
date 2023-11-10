@@ -44,11 +44,10 @@ function Registration() {
             'Content-Type': 'application/json',
           },
         }
-        // { withCredentials: true }
+       
       )
       .then((response) => {
         if (response.status === 200) {
-          // console.log('Registration data', response.data.data);
           navigate('/dashboard', {
             state: { userDetail: response.data.data.username },
           });

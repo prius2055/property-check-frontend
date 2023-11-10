@@ -68,15 +68,15 @@ function Login() {
         },
       });
 
-      if (response.data.status.code === 200) {
+      if (response.status === 200) {
         const { data } = response;
         const { status } = data;
         localStorage.setItem('token', response.headers.get('Authorization'));
         localStorage.setItem('user', JSON.stringify(status.data));
-        //  setIsAuthenticated(true);
         navigate('/dashboard', {
-          state: { userDetail: status.data.username },
+          state: { userDetail: status.data.user.username },
         });
+        console.log(status.data.user.username);
       }
     } catch (error) {
       throw new Error(error);

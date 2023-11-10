@@ -3,19 +3,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
 import Navigation from './Navigation';
+import { useLocation } from 'react-router';
 // import Login from './auth/Login';
 // import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
-  //   handleSuccessfulAuth(data) {
-  //     this.props.handleLogin(data);
-  //     this.props.history.push('/dashboard');
-  //   }
+  const location = useLocation();
+  const { userDetail } = location.state;
 
   return (
     <div className="flex h-screen">
       <Navigation />
+
       <div className="flex flex-col items-center py-8 w-5/6">
+        <p className="my-2 font-bold">Welcome, {userDetail}!</p>
         <header className="my-4 font-bold">LATEST PROPERTIES</header>
         <p>Please select a property to book for an inspection</p>
         <div className="flex items-center w-full ml-20">

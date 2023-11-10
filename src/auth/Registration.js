@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Registration() {
+  const navigate = useNavigate();
+
   const newUserObj = {
     username: '',
     email: '',
@@ -21,7 +23,7 @@ function Registration() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(newUser);
+  
 
     const userData = {
       user: {
@@ -32,10 +34,6 @@ function Registration() {
       },
     };
 
-    // const d = JSON.stringify(userData);
-
-    console.log(userData.user);
-
     axios
       .post(
         'http://localhost:3000/signup',
@@ -44,17 +42,16 @@ function Registration() {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-
-            // Authorization: 'Bearer ' + token, // if you use token
           },
         }
-
-        // header:{'Content-Type': 'application/json'}
         // { withCredentials: true }
       )
       .then((response) => {
         if (response.status === 200) {
-          console.log('Registration data', response.data.data);
+          // console.log('Registration data', response.data.data);
+          navigate('/dashboard', {
+            state: { userDetail: response.data.data.username },
+          });
         }
       })
       .catch((error) => {
@@ -67,7 +64,7 @@ function Registration() {
       <div className="bg-gradient-to-tr from-yellow-800 to-yellow-800 h-24 min-h-full w-1/2">
         <img
           src="https://images.unsplash.com/photo-1470615619213-fdd3985a40e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2054&q=80"
-          className="w-full h-full object-cover mix-blend-overlay"
+          alt='Registration background' className="w-full h-full object-cover mix-blend-overlay"
         />
       </div>
 

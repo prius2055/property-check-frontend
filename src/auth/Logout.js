@@ -6,7 +6,6 @@ const Logout = () => {
   const navigate = useNavigate();
 
   const logoutHandler = async (e) => {
-   
     const url = 'http://localhost:3000/logout';
     const authToken = localStorage.getItem('token');
     try {
@@ -30,8 +29,13 @@ const Logout = () => {
   };
 
   return (
-    <div>
-      <input type="button" value="Logout" onClick={logoutHandler} />
+    <div className="p-2 hover:bg-lime-500 cursor-pointer">
+      <input
+        type="button"
+        value="Logout"
+        onClick={logoutHandler}
+        className="p-4 hover:bg-lime-500 cursor-pointer"
+      />
     </div>
   );
 };

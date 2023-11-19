@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
-import Navigation from './Navigation';
+import Navigation from '../Navigation';
 // import Login from './auth/Login';
 // import { Link } from 'react-router-dom';
 
@@ -40,7 +40,7 @@ const PropertyDetail = () => {
           </div>
           <div className="flex justify-between text-center font-bold p-3  bg-gray-200">
             <span className="mr-4 ">Asking</span>
-            <span>5,000$</span>
+            <span>$5 million</span>
           </div>
 
           <p>Negotiable</p>

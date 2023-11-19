@@ -1,5 +1,6 @@
 import React from 'react';
 import Logout from '../auth/Logout';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
@@ -14,13 +15,16 @@ const Navigation = () => {
         <h1 className="p-4">propInspect</h1>
 
         <ul className="mt-20 flex flex-col justify-between h-80 uppercase cursor-pointer ">
-          <li className="p-4 hover:bg-lime-500">Properties</li>
+          <Link to="/dashboard" className="p-4 hover:bg-lime-500">
+            Properties
+          </Link>
           <li className="p-4 hover:bg-lime-500">My inspections</li>
           <li className="p-4 hover:bg-lime-500">Book inspection</li>
-          <li className="p-4 hover:bg-lime-500">Add property</li>
+          <Link to="/new-property" className="p-4 hover:bg-lime-500">
+            Add property
+          </Link>
           <li className="p-4 hover:bg-lime-500">Remove property</li>
-          <Logout/>
-          {/* <li className="p-4 hover:bg-lime-500">Logout out</li> */}
+          <Logout />
         </ul>
       </div>
 

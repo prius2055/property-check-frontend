@@ -1,13 +1,29 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCurrentUser } from '../redux/features/currentUserSlice';
 
 function Login() {
+  const { currentUserData } = useSelector((store) => store.currentUser);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [dispatch]);
+
+  if (currentUserData) {
+    navigate('/dashboard');
+  }
+
   const userObj = {
     email: '',
     password: '',
   };
-  const navigate = useNavigate();
+ 
   const [user, setUser] = useState(userObj);
 
   const handleChange = (event) => {
@@ -76,7 +92,6 @@ function Login() {
         navigate('/dashboard', {
           state: { userDetail: status.data.user.username },
         });
-        console.log(status.data.user.username);
       }
     } catch (error) {
       throw new Error(error);

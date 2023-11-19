@@ -7,6 +7,7 @@ const SplashPage = () => {
     <div className="bg-gradient-to-tr from-yellow-800 to-yellow-800 h-24 min-h-full relative">
       <img
         src="https://images.unsplash.com/photo-1470615619213-fdd3985a40e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2054&q=80"
+        alt='background'
         className="w-full h-full object-cover mix-blend-overlay absolute"
       />
       <div className="h-screen flex items-center justify-center flex-col absolute w-full">

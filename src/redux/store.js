@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import propertyReducer from './features/propertySlice';
-import currentUserReducer from './features/currentUserSlice';
+import usersReducer from './features/usersSlice';
+import inspectionReducer from './features/inspectionSlice';
 
 const store = configureStore({
   reducer: {
     properties: propertyReducer,
-    currentUser: currentUserReducer,
+    users: usersReducer,
+    inspections: inspectionReducer,
   },
 });
 

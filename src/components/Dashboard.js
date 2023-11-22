@@ -4,18 +4,18 @@ import { faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
 import Navigation from './Navigation';
 import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProperties } from '../redux/features/propertySlice';
-import { getCurrentUser } from '../redux/features/currentUserSlice';
+import { getCurrentUser } from '../redux/features/usersSlice';
 // import Login from './auth/Login';
-// import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
-  const { properties, currentUser } = useSelector((store) => store);
+  const { properties, users } = useSelector((store) => store);
 
   const { propertyData, isLoading, loadingError } = properties;
 
-  const { currentUserData } = currentUser;
+  const { currentUserData } = users;
 
   const dispatch = useDispatch();
 
@@ -69,7 +69,11 @@ const Dashboard = () => {
               />
               <div className="flex justify-between mt-28 items-center">
                 {propertyData.map((property) => (
-                  <div className="text-center w-1/3" key={property.id}>
+                  <Link
+                    to={`/property-detail/${property.id}`}
+                    className="text-center w-1/3"
+                    key={property.id}
+                  >
                     <img
                       src={property.image}
                       alt={property.name}
@@ -80,7 +84,7 @@ const Dashboard = () => {
                       <span>PTY00{property.id}</span>
                     </div>
                     <p className="w-3/4 m-auto">{property.description}</p>
-                  </div>
+                  </Link>
                 ))}
               </div>
               <FontAwesomeIcon

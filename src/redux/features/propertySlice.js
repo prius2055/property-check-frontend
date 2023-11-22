@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { async } from 'q';
 
 export const getProperties = createAsyncThunk('get/properties', async () => {
   const authToken = localStorage.getItem('token');
@@ -29,7 +30,24 @@ export const addProperty = createAsyncThunk(
     );
     const property = await response.data;
     return property;
-   
+  }
+);
+
+export const getSingleProperty = createAsyncThunk(
+  'get/singleProperty',
+  async (id) => {
+    const authToken = localStorage.getItem('token');
+    const response = await axios.get(
+      `http://[::1]:3000/api/v1/properties/${id}`,
+      {
+        headers: {
+          'content-type': 'application/json',
+          authorization: authToken,
+        },
+      }
+    );
+    const singleProperty = await response.data;
+    return singleProperty;
   }
 );
 
@@ -55,6 +73,19 @@ const propertySlice = createSlice({
         state.loadingError = false;
       })
       .addCase(getProperties.rejected, (state) => {
+        state.loadingError = true;
+        state.isLoading = false;
+      })
+      .addCase(getSingleProperty.pending, (state) => {
+        state.isLoading = true;
+        state.loadingError = false;
+      })
+      .addCase(getSingleProperty.fulfilled, (state, { payload }) => {
+        state.propertyData = payload;
+        state.isLoading = false;
+        state.loadingError = false;
+      })
+      .addCase(getSingleProperty.rejected, (state) => {
         state.loadingError = true;
         state.isLoading = false;
       });

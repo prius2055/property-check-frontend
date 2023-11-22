@@ -3,10 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurrentUser } from '../redux/features/currentUserSlice';
+import { getCurrentUser } from '../redux/features/usersSlice';
 
 function Login() {
-  const { currentUserData } = useSelector((store) => store.currentUser);
+  const { currentUserData } = useSelector((store) => store.users);
 
   const dispatch = useDispatch();
   const navigate = useNavigate()

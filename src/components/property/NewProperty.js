@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProperty } from '../../redux/features/propertySlice';
 import Navigation from '../Navigation';
-import { getCurrentUser } from '../../redux/features/currentUserSlice';
+import { getCurrentUser } from '../../redux/features/usersSlice';
 
-function AddNewProperty() {
+function NewProperty() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { currentUserData } = useSelector((state) => state.currentUser);
+  const { currentUserData } = useSelector((state) => state.users);
 
   useEffect(() => {
     dispatch(getCurrentUser());
@@ -41,11 +41,6 @@ function AddNewProperty() {
     event.preventDefault();
 
     const response = dispatch(addProperty(newProperty));
-
-    // const res = new Promise(function (reslove, reject) {
-    //   const result = dispatch(addProperty(newProperty));
-    // });
-    // res.then();
 
     response
       .then((result) => {
@@ -147,4 +142,4 @@ function AddNewProperty() {
   );
 }
 
-export default AddNewProperty;
+export default NewProperty;

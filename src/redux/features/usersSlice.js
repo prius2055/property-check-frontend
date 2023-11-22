@@ -1,6 +1,18 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+export const getAllUsers = createAsyncThunk('get/getAllUsers', async () => {
+  const authToken = localStorage.getItem('token');
+  const response = await axios.get('http://[::1]:3000/api/v1/users', {
+    headers: {
+      'content-type': 'application/json',
+      authorization: authToken,
+    },
+  });
+  const allUsers = await response.data;
+  return allUsers;
+});
+
 export const getCurrentUser = createAsyncThunk('get/currentUser', async () => {
   const authToken = localStorage.getItem('token');
   const response = await axios.get('http://[::1]:3000/current_user', {
@@ -10,28 +22,27 @@ export const getCurrentUser = createAsyncThunk('get/currentUser', async () => {
     },
   });
   const currentUser = await response.data;
-  return currentUser
+  return currentUser;
 });
 
 const initialState = {
   currentUserData: '',
-  error: false,
+  allUsersData: '',
 };
 
-const currentUserSlice = createSlice({
-  name: 'currentUserData',
+const usersSlice = createSlice({
+  name: 'users',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(getAllUsers.fulfilled, (state, { payload }) => {
+      state.allUsersData = payload;
+    });
+
     builder.addCase(getCurrentUser.fulfilled, (state, { payload }) => {
       state.currentUserData = payload;
-      state.error = false;
-    });
-    builder.addCase(getCurrentUser.rejected, (state, { payload }) => {
-      state.currentUserData = '';
-      state.error = true;
     });
   },
 });
 
-export default currentUserSlice.reducer;
+export default usersSlice.reducer;

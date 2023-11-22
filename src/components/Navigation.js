@@ -19,10 +19,15 @@ const Navigation = () => {
             Properties
           </Link>
           <li className="p-4 hover:bg-lime-500">My inspections</li>
-          <li className="p-4 hover:bg-lime-500">Book inspection</li>
+
           <Link to="/new-property" className="p-4 hover:bg-lime-500">
             Add property
           </Link>
+
+          <Link to="/inspections" className="p-4 hover:bg-lime-500">
+            All inspections
+          </Link>
+
           <li className="p-4 hover:bg-lime-500">Remove property</li>
           <Logout />
         </ul>

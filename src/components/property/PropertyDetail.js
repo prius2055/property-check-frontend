@@ -22,8 +22,6 @@ const PropertyDetail = () => {
     dispatch(getSingleProperty(id));
   }, [dispatch]);
 
-  console.log(propertyData);
-
   return (
     <div className="flex h-screen">
       <Navigation />
@@ -53,7 +51,9 @@ const PropertyDetail = () => {
           </div>
           <div className="flex justify-between text-center font-bold p-3  ">
             <span className="mr-4 ">Posted</span>
-            <span>{propertyData.created_at}</span>
+            <span>{`${new Date(`${propertyData.created_at}`).toLocaleDateString(
+              'en-GB'
+            )}`}</span>
           </div>
           <div className="flex justify-between text-center font-bold p-3  bg-gray-200">
             <span className="mr-4 ">Asking</span>

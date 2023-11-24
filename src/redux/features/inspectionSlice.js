@@ -36,6 +36,44 @@ export const addInspection = createAsyncThunk(
   }
 );
 
+export const getUserInspections = createAsyncThunk(
+  'get/userInspections',
+  async (id) => {
+    const authToken = localStorage.getItem('token');
+    const response = await axios.get(
+      `http://[::1]:3000//api/v1/user_inspection/${id}`,
+      {
+        headers: {
+          'content-type': 'application/json',
+          authorization: authToken,
+        },
+      }
+    );
+
+    const userInspections = await response.data;
+    return userInspections;
+  }
+);
+
+export const deleteInspection = createAsyncThunk(
+  'delete/inspection',
+  async (id) => {
+    const authToken = localStorage.getItem('token');
+    const response = await axios.delete(
+      `http://[::1]:3000//api/v1/inspections/${id}`,
+      {
+        headers: {
+          'content-type': 'application/json',
+          authorization: authToken,
+        },
+      }
+    );
+
+    const inspection = await response.data;
+    return inspection;
+  }
+);
+
 const initialState = {
   inspectionData: '',
   isLoading: false,
@@ -58,6 +96,19 @@ const inspectionSlice = createSlice({
         state.loadingError = false;
       })
       .addCase(getInspections.rejected, (state) => {
+        state.loadingError = true;
+        state.isLoading = false;
+      })
+      .addCase(getUserInspections.pending, (state) => {
+        state.isLoading = true;
+        state.loadingError = false;
+      })
+      .addCase(getUserInspections.fulfilled, (state, { payload }) => {
+        state.inspectionData = payload;
+        state.isLoading = false;
+        state.loadingError = false;
+      })
+      .addCase(getUserInspections.rejected, (state) => {
         state.loadingError = true;
         state.isLoading = false;
       });

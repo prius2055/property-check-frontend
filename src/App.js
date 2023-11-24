@@ -10,6 +10,8 @@ import Registration from './auth/Registration';
 import Login from './auth/Login';
 import NewInspection from './components/inspection/NewInspection';
 import Inspections from './components/inspection/Inspections';
+import UserInspections from './components/inspection/UserInspections';
+import RemoveProperty from './components/property/RemoveProperty';
 
 import './App.css';
 
@@ -21,10 +23,12 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/property-detail/:id" element={<PropertyDetail />} />
         <Route path="/new-property" element={<NewProperty />} />
+        <Route path="/delete-property" element={<RemoveProperty />} />
         <Route path="/property-flash" element={<PropertyFlash />} />
         <Route path="/inspection-flash" element={<InspectionFlash />} />
         <Route path="/book-inspection" element={<NewInspection />} />
         <Route path="/inspections" element={<Inspections />} />
+        <Route path="/my-inspections" element={<UserInspections />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<Login />} />
       </Routes>

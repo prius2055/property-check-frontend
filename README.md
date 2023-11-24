@@ -35,7 +35,7 @@ The "Property-Check-FrontEnd Application" is a React-based application designed 
 <details>
   <summary>Server</summary>
   <ul>
-    <li><a href="https://www.ruby-lang.org/en/">Ruby</a></li>
+    <li><a href="https://rubyonrails.org/">Ruby on Rails</a></li>
   </ul>
 </details>
 
@@ -151,6 +151,8 @@ To run the project, execute the following command:
 Contributions, issues, and feature requests are welcome!
 
 Feel free to check the [issues page](https://github.com/prius2055/property-check-frontend/issues).
+
+Feel free to check the [issues page](https://github.com/prius2055/property-check-backend/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

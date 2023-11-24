@@ -4,33 +4,30 @@ import { faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
 import Navigation from '../Navigation';
 import { useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   deleteInspection,
-  getInspections,
+  getUserInspections,
 } from '../../redux/features/inspectionSlice';
-import { getAllUsers, getCurrentUser } from '../../redux/features/usersSlice';
+import { getCurrentUser } from '../../redux/features/usersSlice';
 import { getProperties } from '../../redux/features/propertySlice';
-// import Login from './auth/Login';
 
-const Inspections = () => {
+const UserInspections = () => {
   const { inspections, properties, users } = useSelector((store) => store);
 
   const { inspectionData, isLoading, loadingError } = inspections;
 
   const { propertyData } = properties;
 
-  const { allUsersData, currentUserData } = users;
+  const { currentUserData } = users;
 
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getInspections());
+    dispatch(getUserInspections(currentUserData.id));
     dispatch(getCurrentUser());
-    dispatch(getAllUsers());
     dispatch(getProperties());
   }, [dispatch]);
 
@@ -84,9 +81,7 @@ const Inspections = () => {
           <table className="table-auto border border-slate-300 w-3/4">
             <thead>
               <tr className="border border-slate-300 text-left">
-                <th className="p-4">Username</th>
-                <th>Email</th>
-                <th>Property name</th>
+                <th className="p-4">Property name</th>
                 <th>Location</th>
                 <th>Inpection date</th>
                 <th>Inspection time</th>
@@ -99,22 +94,10 @@ const Inspections = () => {
                   <tr className="border border-slate-300">
                     <td className="p-4">
                       {
-                        allUsersData?.find(
-                          (user) => user.id === inspection.user_id
-                        )?.username
-                      }
-                    </td>
-                    <td>
-                      {
-                        allUsersData?.find(
-                          (user) => user.id === inspection.user_id
-                        )?.email
-                      }
-                    </td>
-                    <td>
-                      {
                         propertyData?.find(
-                          (property) => property.id === inspection.property_id
+                          (property) =>
+                            property.id === inspection.property_id &&
+                            inspection.user_id === currentUserData.id
                         )?.name
                       }
                     </td>
@@ -146,4 +129,4 @@ const Inspections = () => {
   );
 };
 
-export default Inspections;
+export default UserInspections;

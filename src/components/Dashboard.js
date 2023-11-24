@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProperties } from '../redux/features/propertySlice';
 import { getCurrentUser } from '../redux/features/usersSlice';
-// import Login from './auth/Login';
 
 const Dashboard = () => {
   const { properties, users } = useSelector((store) => store);
@@ -26,7 +25,7 @@ const Dashboard = () => {
     dispatch(getCurrentUser());
   }, [dispatch]);
 
-  if (!currentUserData) {
+  if (currentUserData.email === '') {
     navigate('/login');
   }
 
@@ -58,7 +57,7 @@ const Dashboard = () => {
         <p className="my-2 font-bold">Welcome, {currentUserData.username}!</p>
         <header className="my-4 font-bold">LATEST PROPERTIES</header>
 
-        {propertyData && (
+        {propertyData.length !== 0 && (
           <div className="flex flex-col items-center">
             <p>Please select a property to book for an inspection</p>
             <div className="flex items-center w-full ml-20">
@@ -96,7 +95,7 @@ const Dashboard = () => {
           </div>
         )}
 
-        {!propertyData && (
+        {propertyData.length === 0 && (
           <p>No properties at the moment, please check back later</p>
         )}
       </div>

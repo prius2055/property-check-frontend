@@ -51,6 +51,24 @@ export const getSingleProperty = createAsyncThunk(
   }
 );
 
+export const deleteProperty = createAsyncThunk(
+  'delete/deleteProperty',
+  async (id) => {
+    const authToken = localStorage.getItem('token');
+    const response = await axios.delete(
+      `http://[::1]:3000/api/v1/properties/${id}`,
+      {
+        headers: {
+          'content-type': 'application/json',
+          authorization: authToken,
+        },
+      }
+    );
+    const property = await response.data;
+    return property;
+  }
+);
+
 const initialState = {
   propertyData: '',
   isLoading: false,

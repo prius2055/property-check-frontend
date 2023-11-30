@@ -13,6 +13,7 @@ export const getAllUsers = createAsyncThunk('get/getAllUsers', async () => {
   return allUsers;
 });
 
+
 export const getCurrentUser = createAsyncThunk('get/currentUser', async () => {
   const authToken = localStorage.getItem('token');
   const response = await axios.get(

@@ -35,17 +35,12 @@ function Registration() {
     };
 
     axios
-      .post(
-        'http://localhost:3000/signup',
-        userData,
-        {
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-        }
-       
-      )
+      .post('https://propcheck-api.onrender.com/signup', userData, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      })
       .then((response) => {
         if (response.status === 200) {
           navigate('/dashboard', {

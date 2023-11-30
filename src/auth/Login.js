@@ -33,38 +33,6 @@ function Login() {
     });
   };
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   axios
-  //     .post(
-  //       'http://localhost:3000/login',
-  //       {
-  //         user: {
-  //           username: user.username,
-  //           password: user.password,
-  //         },
-  //       },
-  //       {
-  //         headers: {
-  //           'content-type': 'application/json',
-  //           accept: 'application/json',
-  //         },
-  //       }
-  //     )
-  //     .then((response) => {
-  //       // if (response.data.logged_in && response.data.patient) {
-  //       //   this.props.handleSuccessfulAuth(response.data);
-  //       // } else {
-  //       //   this.props.handleSuccessfulDoctorAuth(response.data);
-  //       // }
-  //       console.log('Login data', response);
-  //     })
-  //     .catch((error) => {
-  //       console.log('login error', error);
-  //     });
-  //   console.log(user);
-  // };
-
   const loginHandler = async (e) => {
     e.preventDefault();
 
@@ -75,7 +43,7 @@ function Login() {
       },
     };
 
-    const url = 'http://localhost:3000/login';
+    const url = 'https://propcheck-api.onrender.com/login';
     try {
       const response = await axios.post(url, userInfo, {
         headers: {

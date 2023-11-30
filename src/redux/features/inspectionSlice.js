@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const url = 'http://[::1]:3000//api/v1/inspections';
+const url = 'https://propcheck-api.onrender.com/inspections';
 
 export const getInspections = createAsyncThunk('get/inspection', async () => {
   const authToken = localStorage.getItem('token');
@@ -41,7 +41,7 @@ export const getUserInspections = createAsyncThunk(
   async (id) => {
     const authToken = localStorage.getItem('token');
     const response = await axios.get(
-      `http://[::1]:3000//api/v1/user_inspection/${id}`,
+      `https://propcheck-api.onrender.com/user_inspection/${id}`,
       {
         headers: {
           'content-type': 'application/json',
@@ -60,7 +60,7 @@ export const deleteInspection = createAsyncThunk(
   async (id) => {
     const authToken = localStorage.getItem('token');
     const response = await axios.delete(
-      `http://[::1]:3000//api/v1/inspections/${id}`,
+      `https://propcheck-api.onrender.com/inspections/${id}`,
       {
         headers: {
           'content-type': 'application/json',

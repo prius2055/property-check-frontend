@@ -4,7 +4,7 @@ import { async } from 'q';
 
 export const getProperties = createAsyncThunk('get/properties', async () => {
   const authToken = localStorage.getItem('token');
-  const response = await axios.get('http://[::1]:3000/api/v1/properties', {
+  const response = await axios.get('https://propcheck-api.onrender.com/properties', {
     headers: {
       'content-type': 'application/json',
       authorization: authToken,
@@ -19,7 +19,7 @@ export const addProperty = createAsyncThunk(
   async (propertyDetail) => {
     const authToken = localStorage.getItem('token');
     const response = await axios.post(
-      'http://[::1]:3000/api/v1/properties',
+      'https://propcheck-api.onrender.com/properties',
       { property: propertyDetail },
       {
         headers: {
@@ -38,7 +38,7 @@ export const getSingleProperty = createAsyncThunk(
   async (id) => {
     const authToken = localStorage.getItem('token');
     const response = await axios.get(
-      `http://[::1]:3000/api/v1/properties/${id}`,
+      `https://propcheck-api.onrender.com/properties/${id}`,
       {
         headers: {
           'content-type': 'application/json',
@@ -56,7 +56,7 @@ export const deleteProperty = createAsyncThunk(
   async (id) => {
     const authToken = localStorage.getItem('token');
     const response = await axios.delete(
-      `http://[::1]:3000/api/v1/properties/${id}`,
+      `https://propcheck-api.onrender.com/properties/${id}`,
       {
         headers: {
           'content-type': 'application/json',

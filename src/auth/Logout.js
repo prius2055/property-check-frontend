@@ -6,7 +6,7 @@ const Logout = () => {
   const navigate = useNavigate();
 
   const logoutHandler = async (e) => {
-    const url = 'http://localhost:3000/logout';
+    const url = 'https://propcheck-api.onrender.com/logout';
     const authToken = localStorage.getItem('token');
     try {
       const response = await axios.delete(url, {

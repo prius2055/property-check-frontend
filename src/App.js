@@ -6,7 +6,7 @@ import NewProperty from './components/property/NewProperty';
 import SplashPage from './components/SplashPage';
 import PropertyFlash from './flashPages/PropertyFlash';
 import InspectionFlash from './flashPages/InspectionFlash';
-import Registration from './auth/Registration';
+import SignUp from './auth/SignUp'
 import Login from './auth/Login';
 import NewInspection from './components/inspection/newInspection';
 import Inspections from './components/inspection/Inspections';
@@ -29,7 +29,7 @@ function App() {
         <Route path="/book-inspection" element={<NewInspection />} />
         <Route path="/inspections" element={<Inspections />} />
         <Route path="/my-inspections" element={<UserInspections />} />
-        <Route path="/registration" element={<Registration />} />
+        <Route path="/registration" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </div>

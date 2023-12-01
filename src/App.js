@@ -6,7 +6,7 @@ import NewProperty from './components/property/NewProperty';
 import SplashPage from './components/SplashPage';
 import PropertyFlash from './flashPages/PropertyFlash';
 import InspectionFlash from './flashPages/InspectionFlash';
-import Registration from './auth/registration';
+import Registration from './auth/Registration';
 import Login from './auth/Login';
 import NewInspection from './components/inspection/newInspection';
 import Inspections from './components/inspection/Inspections';

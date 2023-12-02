@@ -8,7 +8,7 @@ import PropertyFlash from './flashPages/PropertyFlash';
 import InspectionFlash from './flashPages/InspectionFlash';
 import SignUp from './auth/SignUp'
 import Login from './auth/Login';
-import NewInspection from './components/inspection/newInspection';
+import NewInspection from './components/inspection/NewInspection';
 import Inspections from './components/inspection/Inspections';
 import UserInspections from './components/inspection/UserInspections';
 import RemoveProperty from './components/property/RemoveProperty';

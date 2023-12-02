@@ -25,18 +25,12 @@ const PropertyDetail = () => {
   return (
     <div className="flex h-screen">
       <Navigation />
-      <div className="flex justify-evenly items-center py-8 w-5/6 m-auto">
+      <div className="flex justify-evenly items-center py-8 px-8 w-5/6 m-auto">
         <div className="flex flex-col items-start">
           <img
             src={propertyData.image}
             alt={`${propertyData.name}`}
-            className="w-92 h-92 rounded-lg mb-8"
-          />
-
-          <FontAwesomeIcon
-            icon={faCircleChevronLeft}
-            style={{ color: '#9ed714' }}
-            size="2xl"
+            className="w-92 h-92 rounded-lg"
           />
         </div>
         <div className="flex flex-col ml-10">
@@ -66,7 +60,7 @@ const PropertyDetail = () => {
           <Link
             to={'/book-inspection'}
             state={{ propertyDetail: propertyData }}
-            className="bg-lime-500 rounded-full p-3 font-bold text-white text-xl cursor-pointer w-1/2 self-end"
+            className="bg-lime-500 rounded-full p-3 font-bold text-white text-center text-xl cursor-pointer w-1/3 self-end"
           >
             Book inspection
           </Link>

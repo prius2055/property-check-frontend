@@ -12,7 +12,6 @@ import {
 } from '../../redux/features/inspectionSlice';
 import { getAllUsers, getCurrentUser } from '../../redux/features/usersSlice';
 import { getProperties } from '../../redux/features/propertySlice';
-// import Login from './auth/Login';
 
 const Inspections = () => {
   const { inspections, properties, users } = useSelector((store) => store);
@@ -127,12 +126,12 @@ const Inspections = () => {
                     </td>
                     <td>{inspection.inspection_date}</td>
                     <td>{inspection.inspection_time}</td>
-                    <button
+                    <td
                       className="p-4 text-red-600 hover:underline"
                       onClick={() => deleteInspectionHandler(inspection.id)}
                     >
                       Delete
-                    </button>
+                    </td>
                   </tr>
                 ))}
             </tbody>

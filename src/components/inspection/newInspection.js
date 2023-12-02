@@ -13,13 +13,7 @@ const NewInspection = () => {
 
   const navigate = useNavigate();
 
-  // const { currentUserData } = useSelector((state) => state.currentUser);
-
   const { user } = JSON.parse(localStorage.getItem('user'));
-
-  // useEffect(() => {
-  //   dispatch(getCurrentUser());
-  // }, [dispatch]);
 
   const [newInspection, setNewInspection] = useState({
     inspection_date: '',
@@ -28,11 +22,8 @@ const NewInspection = () => {
     user_id: user.id,
   });
 
-  // console.log(currentUserData.id);
-
   const handleChange = (e) => {
     setNewInspection({
-      // property_id: property.id,
       ...newInspection,
       [e.target.name]: e.target.value,
     });
@@ -79,7 +70,7 @@ const NewInspection = () => {
           </p>
         </div>
 
-        <form className="flex justify-evenly w-1/3" onSubmit={submitHandler}>
+        <form className="flex justify-evenly" onSubmit={submitHandler}>
           <input
             type="date"
             className="bg-lime-500 text-white border-white border rounded-full px-6 py-3"
@@ -89,7 +80,7 @@ const NewInspection = () => {
 
           <input
             type="time"
-            className="bg-lime-500 text-white border-white border rounded-full px-6 py-3"
+            className="bg-lime-500 text-white border-white border rounded-full px-6 py-3 mx-8"
             name="inspection_time"
             onChange={handleChange}
           />

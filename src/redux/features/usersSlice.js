@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const getAllUsers = createAsyncThunk('get/getAllUsers', async () => {
   const authToken = localStorage.getItem('token');
-  const response = await axios.get('https://propcheck-api.onrender.com/users', {
+  const response = await axios.get('https://propcheck-api.onrender.com/api/v1/users', {
     headers: {
       'content-type': 'application/json',
       authorization: authToken,
@@ -12,6 +12,7 @@ export const getAllUsers = createAsyncThunk('get/getAllUsers', async () => {
   const allUsers = await response.data;
   return allUsers;
 });
+
 
 export const getCurrentUser = createAsyncThunk('get/currentUser', async () => {
   const authToken = localStorage.getItem('token');

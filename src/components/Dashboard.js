@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -14,11 +14,37 @@ const Dashboard = () => {
 
   const { propertyData, isLoading, loadingError } = properties;
 
+  const [page, setPage] = useState(1);
+
   const { currentUserData } = users;
 
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  const itemsPerPage = 3;
+
+  const pages = propertyData?.length / itemsPerPage;
+
+  const skip = page * itemsPerPage - itemsPerPage;
+
+  const prevHandler = (e) => {
+    e.preventDefault();
+    if (page !== 1) {
+      setPage((prev) => prev - 1);
+    } else {
+      return;
+    }
+  };
+
+  const nextHandler = (e) => {
+    e.preventDefault();
+    if (page !== pages) {
+      setPage((prev) => prev + 1);
+    } else {
+      return;
+    }
+  };
 
   useEffect(() => {
     dispatch(getProperties());
@@ -50,7 +76,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="flex h-screen">
+    <div className="flex">
       <Navigation />
 
       <div className="flex flex-col items-center py-8 w-5/6">
@@ -60,36 +86,42 @@ const Dashboard = () => {
         {propertyData.length !== 0 && (
           <div className="flex flex-col items-center">
             <p>Please select a property to book for an inspection</p>
-            <div className="flex items-center w-full ml-20">
+            <div className="flex items-center w-full px-12">
               <FontAwesomeIcon
                 icon={faCircleChevronLeft}
                 style={{ color: '#9ed714' }}
                 size="2xl"
+                className="cursor-pointer"
+                onClick={prevHandler}
               />
-              <div className="flex justify-between mt-28 items-center">
-                {propertyData.map((property) => (
-                  <Link
-                    to={`/property-detail/${property.id}`}
-                    className="text-center w-1/3"
-                    key={property.id}
-                  >
-                    <img
-                      src={property.image}
-                      alt={property.name}
-                      className="w-80 h-80 rounded-full m-auto"
-                    />
-                    <div className="flex justify-center my-6 text-center font-bold border-b-2 border-dotted pb-4 w-1/2 mx-auto ">
-                      <span className="mr-4 ">{property.name}</span>
-                      <span>PTY00{property.id}</span>
-                    </div>
-                    <p className="w-3/4 m-auto">{property.description}</p>
-                  </Link>
-                ))}
+              <div className="flex mt-12 items-start px-2">
+                {propertyData
+                  ?.slice(skip, skip + itemsPerPage)
+                  .map((property) => (
+                    <Link
+                      to={`/property-detail/${property.id}`}
+                      className="flex flex-col items-center text-center w-1/3"
+                      key={property.id}
+                    >
+                      <img
+                        src={property.image}
+                        alt={property.name}
+                        className="w-96 h-96 rounded-full"
+                      />
+                      <div className="flex justify-center my-6 text-center font-bold border-b-2 border-dotted pb-4 mx-8">
+                        <span className="mr-4 ">{property.name}</span>
+                        <span>PTY00{property.id}</span>
+                      </div>
+                      <p className="w-3/4 m-auto">{property.description}</p>
+                    </Link>
+                  ))}
               </div>
               <FontAwesomeIcon
                 icon={faCircleChevronRight}
                 style={{ color: '#9ed714' }}
                 size="2xl"
+                className="cursor-pointer"
+                onClick={nextHandler}
               />
             </div>
           </div>

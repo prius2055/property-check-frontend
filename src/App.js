@@ -6,9 +6,9 @@ import NewProperty from './components/property/NewProperty';
 import SplashPage from './components/SplashPage';
 import PropertyFlash from './flashPages/PropertyFlash';
 import InspectionFlash from './flashPages/InspectionFlash';
-import Registration from './auth/Registration';
+import SignUp from './auth/SignUp'
 import Login from './auth/Login';
-import NewInspection from './components/inspection/NewInspection';
+import NewInspectionForm from './components/inspection/NewInspectionForm';
 import Inspections from './components/inspection/Inspections';
 import UserInspections from './components/inspection/UserInspections';
 import RemoveProperty from './components/property/RemoveProperty';
@@ -26,10 +26,10 @@ function App() {
         <Route path="/delete-property" element={<RemoveProperty />} />
         <Route path="/property-flash" element={<PropertyFlash />} />
         <Route path="/inspection-flash" element={<InspectionFlash />} />
-        <Route path="/book-inspection" element={<NewInspection />} />
+        <Route path="/book-inspection" element={<NewInspectionForm />} />
         <Route path="/inspections" element={<Inspections />} />
         <Route path="/my-inspections" element={<UserInspections />} />
-        <Route path="/registration" element={<Registration />} />
+        <Route path="/registration" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </div>

@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import PropertyDetail from './components/property/PropertyDetail';
 import NewProperty from './components/property/NewProperty';
 import SplashPage from './components/SplashPage';
 import PropertyFlash from './flashPages/PropertyFlash';
 import InspectionFlash from './flashPages/InspectionFlash';
-import SignUp from './auth/SignUp'
+import SignUp from './auth/SignUp';
 import Login from './auth/Login';
 import NewInspectionForm from './components/inspection/NewInspectionForm';
 import Inspections from './components/inspection/Inspections';

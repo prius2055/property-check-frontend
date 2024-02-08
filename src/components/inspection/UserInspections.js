@@ -37,8 +37,9 @@ const UserInspections = () => {
       .then((result) => {
         const { status } = result.payload;
         if (status === 'Success') {
+          alert('Successfully deleted')
           navigate('/my-inspections');
-          console.log('successfully deleted');
+          // console.log('successfully deleted');
         }
       })
       .catch((error) => {
@@ -122,7 +123,7 @@ const UserInspections = () => {
           </table>
         )}
         {inspectionData.length === 0 && (
-          <p>You hav'nt book for an inspection yet</p>
+          <p>You hav'nt booked for an inspection yet</p>
         )}
       </div>
     </div>

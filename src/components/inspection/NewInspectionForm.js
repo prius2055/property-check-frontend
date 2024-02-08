@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { PaystackButton } from 'react-paystack';
 import Navigation from '../Navigation';
 import { useLocation, useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,13 +14,16 @@ const NewInspectionForm = () => {
 
   const navigate = useNavigate();
 
-  const { user } = JSON.parse(localStorage.getItem('user'));
+  const { users } = useSelector((store) => store);
+  const { currentUserData } = users;
+
+  // const { user } = JSON.parse(localStorage.getItem('user'));
 
   const [newInspection, setNewInspection] = useState({
     inspection_date: '',
     inspection_time: '',
     property_id: property.id,
-    user_id: user.id,
+    user_id: currentUserData.id,
   });
 
   const handleChange = (e) => {
@@ -29,10 +33,18 @@ const NewInspectionForm = () => {
     });
   };
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    const response = dispatch(addInspection(newInspection));
+  const config = {
+    reference: new Date().getTime().toString(),
 
+    email: `${currentUserData.email}`,
+
+    amount: 1000000,
+    publicKey: 'pk_test_0a395191ead62b99018416f3ad35a34fa2dd3a26',
+  };
+
+  const handlePaystackSuccessAction = () => {
+    // alert('Thanks for doing business with us! Come back soon!!');
+    const response = dispatch(addInspection(newInspection));
     response
       .then((result) => {
         const { status } = result.payload;
@@ -41,10 +53,19 @@ const NewInspectionForm = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        alert(
+          `Sorry you are unable to book appointment at this time, due to ${error}. Kindly contact us using our hotlines`
+        );
       });
+  };
 
-    console.log(newInspection);
+  // const handlePaystackCloseAction = () => {};
+
+  const componentProps = {
+    ...config,
+    text: 'Book now',
+    onSuccess: () => handlePaystackSuccessAction(),
+    // onClose: handlePaystackCloseAction,
   };
 
   return (
@@ -70,7 +91,7 @@ const NewInspectionForm = () => {
           </p>
         </div>
 
-        <form className="flex justify-evenly" onSubmit={submitHandler}>
+        <form className="flex justify-evenly">
           <input
             type="date"
             className="bg-lime-500 text-white border-white border rounded-full px-6 py-3"
@@ -84,16 +105,61 @@ const NewInspectionForm = () => {
             name="inspection_time"
             onChange={handleChange}
           />
-          <button
-            type="submit"
-            className="bg-white rounded-full px-16 py-3 text-lime-600 text-l cursor-pointer"
-          >
-            Book Now
-          </button>
         </form>
+        <button
+          type="submit"
+          className="bg-white rounded-full px-16 py-3 text-lime-600 text-l cursor-pointer"
+        >
+          <PaystackButton {...componentProps} />
+        </button>
       </div>
     </div>
   );
 };
 
 export default NewInspectionForm;
+
+//////////////////////////
+// import React from 'react';
+// import { PaystackButton } from 'react-paystack';
+// import { useDispatch, useSelector } from 'react-redux';
+
+// const PaystackPayment = ({ propertyInfo }) => {
+// const { users } = useSelector((store) => store);
+// const { currentUserData } = users;
+// console.log(users);
+
+// const config = {
+//   reference: new Date().getTime().toString(),
+
+//   email: `${currentUserData.email}`,
+
+//   amount: 1000000,
+//   publicKey: 'pk_test_0a395191ead62b99018416f3ad35a34fa2dd3a26',
+// };
+
+// console.log(propertyInfo);
+// console.log(propertyInfo.name);
+
+// you can call this function anything
+// const handlePaystackSuccessAction = (reference) => {
+//   // Implementation for whatever you want to do with reference and after success call.
+//   alert('Thanks for doing business with us! Come back soon!!');
+//   //  console.log(reference);
+// };
+
+// // you can call this function anything
+// const handlePaystackCloseAction = () => {
+//   // implementation for  whatever you want to do when the Paystack dialog closed.
+//   console.log('closed');
+// };
+
+// const componentProps = {
+//   ...config,
+//   text: 'Book now',
+//   onSuccess: (reference) => handlePaystackSuccessAction(reference),
+//   onClose: handlePaystackCloseAction,
+// };
+
+// return <PaystackButton {...componentProps} />;
+// };

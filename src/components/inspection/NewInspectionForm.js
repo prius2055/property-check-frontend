@@ -106,60 +106,15 @@ const NewInspectionForm = () => {
             onChange={handleChange}
           />
         </form>
-        <button
+        <div
           type="submit"
           className="bg-white rounded-full px-16 py-3 text-lime-600 text-l cursor-pointer"
         >
           <PaystackButton {...componentProps} />
-        </button>
+        </div>
       </div>
     </div>
   );
 };
 
 export default NewInspectionForm;
-
-//////////////////////////
-// import React from 'react';
-// import { PaystackButton } from 'react-paystack';
-// import { useDispatch, useSelector } from 'react-redux';
-
-// const PaystackPayment = ({ propertyInfo }) => {
-// const { users } = useSelector((store) => store);
-// const { currentUserData } = users;
-// console.log(users);
-
-// const config = {
-//   reference: new Date().getTime().toString(),
-
-//   email: `${currentUserData.email}`,
-
-//   amount: 1000000,
-//   publicKey: 'pk_test_0a395191ead62b99018416f3ad35a34fa2dd3a26',
-// };
-
-// console.log(propertyInfo);
-// console.log(propertyInfo.name);
-
-// you can call this function anything
-// const handlePaystackSuccessAction = (reference) => {
-//   // Implementation for whatever you want to do with reference and after success call.
-//   alert('Thanks for doing business with us! Come back soon!!');
-//   //  console.log(reference);
-// };
-
-// // you can call this function anything
-// const handlePaystackCloseAction = () => {
-//   // implementation for  whatever you want to do when the Paystack dialog closed.
-//   console.log('closed');
-// };
-
-// const componentProps = {
-//   ...config,
-//   text: 'Book now',
-//   onSuccess: (reference) => handlePaystackSuccessAction(reference),
-//   onClose: handlePaystackCloseAction,
-// };
-
-// return <PaystackButton {...componentProps} />;
-// };
